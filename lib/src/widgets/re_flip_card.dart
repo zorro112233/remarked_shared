@@ -27,6 +27,7 @@ class ReFlipCard extends StatelessWidget {
     required this.bonus,
     required this.authorized,
     required this.authButton,
+    this.shadows,
     this.imagePath,
     this.errorImagePath,
     super.key,
@@ -55,6 +56,9 @@ class ReFlipCard extends StatelessWidget {
 
   /// Цвет фона QR кода.
   final Color qrCodeDecorationColor;
+
+  /// Тень.
+  final List<BoxShadow>? shadows;
 
   /// Путь к картинке на карте.
   final String? imagePath;
@@ -95,6 +99,7 @@ class ReFlipCard extends StatelessWidget {
         backgroundColor: backgroundColor,
         qrCodeColor: qrCodeColor,
         qrCodeDecorationColor: qrCodeDecorationColor,
+        shadows: shadows,
         imagePath: imagePath,
         errorImagePath: errorImagePath,
         walletIconPath: walletIconPath,
@@ -108,6 +113,7 @@ class ReFlipCard extends StatelessWidget {
         backgroundColor: backgroundColor,
         qrCodeColor: qrCodeColor,
         qrCodeDecorationColor: qrCodeDecorationColor,
+        shadows: shadows,
         cardNumber: cardNumber,
         authorized: authorized,
         authButton: authButton,
@@ -132,6 +138,7 @@ class _FrontSide extends StatefulWidget {
     required this.bonus,
     required this.authorized,
     required this.authButton,
+    this.shadows,
     this.imagePath,
     this.errorImagePath,
   });
@@ -151,6 +158,8 @@ class _FrontSide extends StatefulWidget {
   final Color qrCodeColor;
 
   final Color qrCodeDecorationColor;
+
+  final List<BoxShadow>? shadows;
 
   final String? imagePath;
 
@@ -197,7 +206,7 @@ class _FrontSideState extends State<_FrontSide> {
             ? Colors.transparent
             : widget.backgroundColor,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        // boxShadow: AppColors.dropShadow,
+        boxShadow: widget.shadows,
         image: backgroundImage == null
             ? null
             : DecorationImage(
@@ -279,12 +288,16 @@ class _BackSide extends StatefulWidget {
     required this.cardNumber,
     required this.authorized,
     required this.authButton,
+    this.shadows,
   });
 
   final Color backgroundColor;
 
   final Color qrCodeColor;
+
   final Color qrCodeDecorationColor;
+
+  final List<BoxShadow>? shadows;
 
   final String cardNumber;
 
@@ -307,7 +320,7 @@ class _BackSideState extends State<_BackSide> {
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        // boxShadow: AppColors.dropShadow,
+        boxShadow: widget.shadows,
       ),
       child: widget.authorized
           ? _ColorChangingBorder(
